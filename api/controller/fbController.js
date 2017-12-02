@@ -47,8 +47,8 @@ function getFacebookData(token, id, callback){
         },
 
         function(callback){
-            FacebookService.getFacebookEducation(token, id, function(educ){
-                info.education = educ
+            FacebookService.getFacebookEducation(token, id, function(education){
+                info.education = education
                 return callback();
             })
         }
