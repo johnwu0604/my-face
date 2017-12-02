@@ -60,7 +60,7 @@
 	</nav>
 
 <!-- Intro Header -->
-	<header class="intro">
+	<header class="intro" ng-style="{'background-image':'radial-gradient(circle at 50% 50%,rgba(0,0,0,0.46),rgba(0,0,0,0.88)), url(' + facebook_user_data.user_info.cover + ')'}">
 	<div class="intro-body">
 		<div class="container">
 			<div class="row">
@@ -86,8 +86,8 @@
 			<div class="col-lg-8 col-lg-offset-2">
 				<h1>User ID: {{ facebook_user_data.user_id }}</h1>
 				<p>
-					I was born in Newfoundland and grew up in Vancouver. Some of my interests include basketball, coding, and
-					cooking. I like long walks on the beach too. You can find social media links below.
+					Hi my name is Tiffany Wang and I was born in {{ facebook_user_data.user_info.info.hometown.name }}. I'm currently studying engineering
+					at {{ facebook_user_data.user_info.info.education[0].school.name }}
 				</p>
 				<ul class="list-inline banner-social-buttons">
 					<li>
@@ -106,90 +106,95 @@
 	<section id="photos">
 	<div class="gallery">
 		<ul>
-			<li class="col-md-3" class="frame">
+			<li ng-repeat="photo in facebook_user_data.user_info.photos" class="col-md-3" class="frame">
 				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21753312_10214154503124934_4326328770955100663_o.jpg?oh=60ca1445dd5cc5f3f653556c7c97be72&oe=5AD75708');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21753312_10214154503124934_4326328770955100663_o.jpg?oh=60ca1445dd5cc5f3f653556c7c97be72&oe=5AD75708" alt="">-->
+					<div class="crop" ng-style="{'background-image':'url(' + photo.url + ')'}">
 					</div>
 				</div>
 			</li>
-			<li class="col-md-3" class="frame">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21729002_10214154475004231_4837622893033034903_o.jpg?oh=4a1f5f2da2ca745399fb4b0bb1e980f1&oe=5AD159ED');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21729002_10214154475004231_4837622893033034903_o.jpg?oh=4a1f5f2da2ca745399fb4b0bb1e980f1&oe=5AD159ED" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743427_10214154494004706_4802787054254998425_o.jpg?oh=3e2d8a57039a02c16007bdf953b03f44&oe=5A9FCA89');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743427_10214154494004706_4802787054254998425_o.jpg?oh=3e2d8a57039a02c16007bdf953b03f44&oe=5A9FCA89" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743614_10214154481844402_8186248589951514331_o.jpg?oh=4b96121aef0f1394098c1bc0ab69d4a8&oe=5ACFEBEF');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743614_10214154481844402_8186248589951514331_o.jpg?oh=4b96121aef0f1394098c1bc0ab69d4a8&oe=5ACFEBEF" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/13002372_1068115863244641_5246460355071352022_o.jpg?oh=d4962154d613c4f99edd6e481761fb31&oe=5ACC496B');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/13002372_1068115863244641_5246460355071352022_o.jpg?oh=d4962154d613c4f99edd6e481761fb31&oe=5ACC496B" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-0/p206x206/16730120_10212122495166005_7556263489097394727_n.jpg?oh=f8d4a3e983bc758a0a6371c88f98ca66&oe=5A96CFBB');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-0/p206x206/16730120_10212122495166005_7556263489097394727_n.jpg?oh=f8d4a3e983bc758a0a6371c88f98ca66&oe=5A96CFBB" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731500_10214154467524044_6201732780211646174_o.jpg?oh=82ad4d70f0f3d9753ccca93547811ca0&oe=5A98202D');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731500_10214154467524044_6201732780211646174_o.jpg?oh=82ad4d70f0f3d9753ccca93547811ca0&oe=5A98202D" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740979_10214154477164285_5092745520001808998_o.jpg?oh=0bfdef102cd6e10624a2899d5d573694&oe=5AD54091');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740979_10214154477164285_5092745520001808998_o.jpg?oh=0bfdef102cd6e10624a2899d5d573694&oe=5AD54091" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740747_10214154459923854_1234114197467373086_o.jpg?oh=26e89162f0274478881243eb019c93b9&oe=5AD72C38');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740747_10214154459923854_1234114197467373086_o.jpg?oh=26e89162f0274478881243eb019c93b9&oe=5AD72C38" alt="">-->
-					</div>
-				</div>
-			</li>
-			<li class="col-md-3">
-				<div class="gallery-image">
-					<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731571_10214154487084533_4964330382680349086_o.jpg?oh=a43d0f5e15aec51ef9db78b5774470bd&oe=5AC8FBB5');">
-						<!--<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731571_10214154487084533_4964330382680349086_o.jpg?oh=a43d0f5e15aec51ef9db78b5774470bd&oe=5AC8FBB5" alt="">-->
-					</div>
-				</div>
-			</li>
+			<!--<li ng-repeat="photo in facebook_user_data.user_info.photos" class="col-md-3" class="frame">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" ng-style="{ "background-image" : url('https:4326328770956c7c97be72&oe=5AD75708')};">-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3" class="frame">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21729002_10214154475004231_4837622893033034903_o.jpg?oh=4a1f5f2da2ca745399fb4b0bb1e980f1&oe=5AD159ED');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21729002_10214154475004231_4837622893033034903_o.jpg?oh=4a1f5f2da2ca745399fb4b0bb1e980f1&oe=5AD159ED" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743427_10214154494004706_4802787054254998425_o.jpg?oh=3e2d8a57039a02c16007bdf953b03f44&oe=5A9FCA89');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743427_10214154494004706_4802787054254998425_o.jpg?oh=3e2d8a57039a02c16007bdf953b03f44&oe=5A9FCA89" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743614_10214154481844402_8186248589951514331_o.jpg?oh=4b96121aef0f1394098c1bc0ab69d4a8&oe=5ACFEBEF');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743614_10214154481844402_8186248589951514331_o.jpg?oh=4b96121aef0f1394098c1bc0ab69d4a8&oe=5ACFEBEF" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/13002372_1068115863244641_5246460355071352022_o.jpg?oh=d4962154d613c4f99edd6e481761fb31&oe=5ACC496B');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/13002372_1068115863244641_5246460355071352022_o.jpg?oh=d4962154d613c4f99edd6e481761fb31&oe=5ACC496B" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-0/p206x206/16730120_10212122495166005_7556263489097394727_n.jpg?oh=f8d4a3e983bc758a0a6371c88f98ca66&oe=5A96CFBB');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-0/p206x206/16730120_10212122495166005_7556263489097394727_n.jpg?oh=f8d4a3e983bc758a0a6371c88f98ca66&oe=5A96CFBB" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731500_10214154467524044_6201732780211646174_o.jpg?oh=82ad4d70f0f3d9753ccca93547811ca0&oe=5A98202D');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731500_10214154467524044_6201732780211646174_o.jpg?oh=82ad4d70f0f3d9753ccca93547811ca0&oe=5A98202D" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740979_10214154477164285_5092745520001808998_o.jpg?oh=0bfdef102cd6e10624a2899d5d573694&oe=5AD54091');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740979_10214154477164285_5092745520001808998_o.jpg?oh=0bfdef102cd6e10624a2899d5d573694&oe=5AD54091" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740747_10214154459923854_1234114197467373086_o.jpg?oh=26e89162f0274478881243eb019c93b9&oe=5AD72C38');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740747_10214154459923854_1234114197467373086_o.jpg?oh=26e89162f0274478881243eb019c93b9&oe=5AD72C38" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="col-md-3">-->
+				<!--<div class="gallery-image">-->
+					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731571_10214154487084533_4964330382680349086_o.jpg?oh=a43d0f5e15aec51ef9db78b5774470bd&oe=5AC8FBB5');">-->
+						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731571_10214154487084533_4964330382680349086_o.jpg?oh=a43d0f5e15aec51ef9db78b5774470bd&oe=5AC8FBB5" alt="">&ndash;&gt;-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</li>-->
 		</ul>
 	</div>
 	</section>
