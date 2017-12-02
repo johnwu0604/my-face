@@ -1,9 +1,0 @@
-{
-  "name": "y-hack",
-  "version": "0.0.0",
-  "description": "Y-Hack personal website generator",
-  "author": "John Wu, Tiffany Wang, Frank Ye",
-  "dependencies": {
-    "angularjs-social-login": "^2.4.5"
-  }
-}
