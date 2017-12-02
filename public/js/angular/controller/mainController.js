@@ -7,7 +7,7 @@ angular.module('mainController', [])
         $scope.emailFormData = {};
         $scope.email_success_message = '';
 
-        var token = 'EAACEdEose0cBAAmvea3nyvOkqruy9JKOfZAy0RcX6mG5xNdsaugKZBjYkVlcfYe8ZAYa7QG51N9XJljEZBTQUB9FpkmLoHrnh3h7XtVh6DP5ViaQnAo9OgZCE27ZAj5BfuBgNi8NuaADnbZAULFq2ezTXN7BFnZBT3fUyG68xOLQnkogS9K1MKpfqvmqojQ0PZCoApAwTSv3ufgZDZD';
+        var token = 'EAACEdEose0cBAM5vfR6T6RGG3UKZBlDxAZARAktwZCcA9VAcjWZAJsJjwVj6KnM5ZBHOl3xEgBz0MraV3owXdO1EYyuNPkRewSaKUFbIVrkTnQ31bJf4i8IMZBSawZCTUhcxqEQ6BqPUU9NGWKvZAB0rt05r45S9iO5me33rNnFF1sYe4nqdJIIBVUJKdPxmolBz62Ba3xc8ZBQZDZD';
 
         Facebook.getUserData(token).success(function(data) {
             console.log(data);
