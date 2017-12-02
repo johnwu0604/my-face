@@ -12,7 +12,13 @@ passport.use(new Strategy({
         // be associated with a user record in the application's database, which
         // allows for account linking and authentication with other identity
         // providers.
-        return cb(null, profile);
+        var user = {
+            'email': profile.emails[0].value,
+            'name' : profile.name.givenName + ' ' + profile.name.familyName,
+            'id'   : profile.id,
+            'token': accessToken
+        }
+        return cb(null, user);
     }));
 
 passport.serializeUser(function(user, cb) {
