@@ -12,6 +12,7 @@ passport.use(new Strategy({
         // be associated with a user record in the application's database, which
         // allows for account linking and authentication with other identity
         // providers.
+        console.log('Access Token: ' + accessToken);
         return cb(null, profile);
     }));
 
@@ -39,7 +40,6 @@ module.exports = function(app) {
         });
 
     app.get('/test', function(req, res) {
-        console.log(req.user.facebook);
         res.send('good');
     });
 
