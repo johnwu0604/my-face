@@ -1,7 +1,16 @@
 var FB = require('fb')
+var async = require('async')
+
+
+function parseNewFacebookPhotos(id, callback){
+    FB.api('/' + id +'?fields=images', function (res) {
+        // var elem = {"url":res.images[0].source}
+        // photos.push(elem)
+        return callback(res.images[0].source)
+    })
+}
 
 module.exports = {
-
     getFacebookId: function(token, callback) {
         FB.setAccessToken(token)
         FB.api('/me', function(response) {
@@ -12,7 +21,15 @@ module.exports = {
 
     getFacebookBasicInfo: function(token, id, callback){
         FB.setAccessToken(token)
-        FB.api('/me?fields=birthday,education,email,hometown,languages,locale,relationship_status', function (response) {
+        FB.api('/me?fields=first_name,last_name,birthday,education.limit(1),work,email,hometown,languages,link,locations,relationship_status', function (response) {
+            console.log('basic info response is : ' + response)
+            return callback(response)
+        })
+    },
+
+    getFacebookEducation: function(token, id, callback){
+        FB.setAccessToken(token)
+        FB.api('/me?fields=first_name,last_name,birthday,education.limit(1),work,email,hometown,languages,link,locations,relationship_status', function (response) {
             console.log('basic info response is : ' + response)
             return callback(response)
         })
@@ -36,24 +53,46 @@ module.exports = {
 
     getFacebookProfilePicture: function(token, id, callback){
         FB.setAccessToken(token)
-        FB.api('/me/picture', function (response) {
+        FB.api('/me?fields=picture.height(500)', function (response) {
             console.log('profile_pic response is : ' + response)
-            return callback(response.data)
+            return callback(response.picture.data.url)
         })
     },
 
     getFacebookPhotos: function(token, id, callback){
         FB.setAccessToken(token)
-        FB.api('/me/photos?limit=10', function (response) {
-            var photos = [];
+        FB.api('/me/photos?pretty=0&fields=likes.limit(0).summary(true)&since=2016-07-01&limit=30', function (response) {
             console.log('photos response is : ' + response)
-            for(var i = 0 ; i < Object.keys(response.data).length ; i++){
-                FB.api('/' + response.data[i].id +'?fields=images', function (res) {
-                    var element = {"url":res.images[0].source}
-                    photos.push(element)
-                })
+            var array = [];
+            for(var i = 0 ; i < Object.keys(response.data).length; i++){
+                var element =  {};
+                element.id = response.data[i].id;
+                element.likes = response.data[i].likes.summary.total_count;
+                array.push(element)
             }
-            return callback(photos);
+
+            array.sort(function(a, b){
+                b.likes - a.likes;
+            });
+            //
+            // console.log(array);
+            // console.log(array[0].likes);
+            // console.log(array[0].id);
+            var photos = [];
+
+            async.series([
+                function(callback){
+                    for(var i = 0 ; i < 12 ; i ++) {
+                        var img_id = array[i].id
+                        parseNewFacebookPhotos(img_id, function (url) {
+                            photos.push({"url": url})
+                        })
+                    }
+                    return callback()
+                }
+            ], function(){
+                return callback(photos);
+            })
         })
     }
 }
