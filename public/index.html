@@ -24,6 +24,32 @@
 	<script src="js/angular/service/facebookService.js"></script>
 	<script src="js/angular/service/emailService.js"></script>
 	<script src="js/angular/core.js"></script>
+	<script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId            : '1546707545396988',
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v2.11'
+            });
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log('Logged in.');
+                }
+                else {
+                    FB.login();
+                }
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+	</script>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-controller="facebookController">
@@ -85,6 +111,7 @@
 		<div class="row">
 			<h2>LIL' ABOUT ME</h2>
 			<div class="col-lg-8 col-lg-offset-2">
+				<button fb-login type="button">facebook</button>
 				<img class="img-circle" ng-src="{{ facebook_user_data.user_info.profile_picture }}"><br><br>
 				<p>
 					Hey There! My name is {{ facebook_user_data.user_info.basic_info.first_name }} {{ facebook_user_data.user_info.basic_info.last_name }} and thank you for visiting

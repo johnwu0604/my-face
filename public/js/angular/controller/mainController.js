@@ -6,8 +6,9 @@ angular.module('mainController', [])
         $scope.loading = true;
         $scope.emailFormData = {};
         $scope.email_success_message = '';
+        $scope.userDetails = {};
 
-        var token = 'EAACEdEose0cBAM5vfR6T6RGG3UKZBlDxAZARAktwZCcA9VAcjWZAJsJjwVj6KnM5ZBHOl3xEgBz0MraV3owXdO1EYyuNPkRewSaKUFbIVrkTnQ31bJf4i8IMZBSawZCTUhcxqEQ6BqPUU9NGWKvZAB0rt05r45S9iO5me33rNnFF1sYe4nqdJIIBVUJKdPxmolBz62Ba3xc8ZBQZDZD';
+        var token = 'EAACEdEose0cBAH5cOO5yam9PKyytz1pArB04ox60sjq5GJZAnk3kg1sqvxVpkPrK9ZCZA3VfjnJu5PQ78ZAZA2fYyYbFG4ilQqzbp6f30lPkZC5bwgbX8obouLhyV6XuAGgfy3nmWtT8I06MSZC3WSE0myXlmQXnAyxsMJ4ytWqkGRy4UU4B4i6c3mJTk8mVHKkKl028ZB9Y4wZDZD';
 
         Facebook.getUserData(token).success(function(data) {
             console.log(data);
@@ -24,7 +25,6 @@ angular.module('mainController', [])
                 $scope.email_success_message = 'Your email was successfully sent!';
             })
         };
-
 
 
     }]);
