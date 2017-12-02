@@ -35,7 +35,7 @@
 			<i class="fa fa-bars"></i>
 			</button>
 			<a class="navbar-brand page-scroll" href="index.html">
-				{{ facebook_user_data.user_info.basic_info.first }} {{ facebook_user_data.user_info.basic_info.last }}</a>
+				{{ facebook_user_data.user_info.basic_info.first_name }} {{ facebook_user_data.user_info.basic_info.last_name }}</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
@@ -65,7 +65,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<h1 class="brand-heading">{{ facebook_user_data.user_info.basic_info.first }} {{ facebook_user_data.user_info.basic_info.last }}</h1>
+					<h1 class="brand-heading">{{ facebook_user_data.user_info.basic_info.first_name }} {{ facebook_user_data.user_info.basic_info.last_name }}</h1>
 					<p class="intro-text">
 						Welcome to my website
 					</p>
@@ -84,17 +84,19 @@
 		<div class="row">
 			<h2>LIL' ABOUT ME</h2>
 			<div class="col-lg-8 col-lg-offset-2">
-				<img src="{{ facebook_user_data.user_info.profile_picture }}">
+				<img class="img-circle" ng-src="{{ facebook_user_data.user_info.profile_picture }}"><br><br>
 				<p>
-					Hi my name is {{ facebook_user_data.user_info.basic_info.first }} {{ facebook_user_data.user_info.basic_info.last }} and I was born in {{ facebook_user_data.user_info.basic_info.hometown }}. I'm currently studying engineering
-					at {{ facebook_user_data.user_info.education[1].school }}
+					Hey There! My name is {{ facebook_user_data.user_info.basic_info.first_name }} {{ facebook_user_data.user_info.basic_info.last_name }} and thank you for visiting
+					my personal website. A little bit about myself, I grew up in the beautiful city of {{ facebook_user_data.user_info.basic_info.hometown }}. My educational
+					background includes studying at {{ facebook_user_data.user_info.education }}. If you need to contact me, feel free to reach out using the form below or
+					connect with me through one of the following social media links.
 				</p>
 				<ul class="list-inline banner-social-buttons">
 					<li>
-						<a href="https://twitter.com/wowthemesnet" class="btn btnghost btn-lg"><i class="fa fa-instagram fa-fw"></i><span class="network-name">Instagram</span></a>
+						<a href="https://twitter.com/wowthemesnet" target="_blank" class="btn btnghost btn-lg"><i class="fa fa-instagram fa-fw"></i><span class="network-name">Instagram</span></a>
 					</li>
 					<li>
-						<a href="https://www.facebook.com/pages/wowthemesnet/562560840468823" class="btn btnghost btn-lg"><i class="fa fa-facebook fa-fw"></i><span class="network-name">Facebook</span></a>
+						<a ng-href="{{ facebook_user_data.user_info.basic_info.link }}" target="_blank" class="btn btnghost btn-lg"><i class="fa fa-facebook fa-fw"></i><span class="network-name">Facebook</span></a>
 					</li>
 				</ul>
 			</div>
@@ -112,89 +114,6 @@
 					</div>
 				</div>
 			</li>
-			<!--<li ng-repeat="photo in facebook_user_data.user_info.photos" class="col-md-3" class="frame">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" ng-style="{ "background-image" : url('https:4326328770956c7c97be72&oe=5AD75708')};">-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3" class="frame">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21729002_10214154475004231_4837622893033034903_o.jpg?oh=4a1f5f2da2ca745399fb4b0bb1e980f1&oe=5AD159ED');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21729002_10214154475004231_4837622893033034903_o.jpg?oh=4a1f5f2da2ca745399fb4b0bb1e980f1&oe=5AD159ED" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743427_10214154494004706_4802787054254998425_o.jpg?oh=3e2d8a57039a02c16007bdf953b03f44&oe=5A9FCA89');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743427_10214154494004706_4802787054254998425_o.jpg?oh=3e2d8a57039a02c16007bdf953b03f44&oe=5A9FCA89" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743614_10214154481844402_8186248589951514331_o.jpg?oh=4b96121aef0f1394098c1bc0ab69d4a8&oe=5ACFEBEF');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21743614_10214154481844402_8186248589951514331_o.jpg?oh=4b96121aef0f1394098c1bc0ab69d4a8&oe=5ACFEBEF" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/13002372_1068115863244641_5246460355071352022_o.jpg?oh=d4962154d613c4f99edd6e481761fb31&oe=5ACC496B');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/13002372_1068115863244641_5246460355071352022_o.jpg?oh=d4962154d613c4f99edd6e481761fb31&oe=5ACC496B" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-0/p206x206/16730120_10212122495166005_7556263489097394727_n.jpg?oh=f8d4a3e983bc758a0a6371c88f98ca66&oe=5A96CFBB');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-0/p206x206/16730120_10212122495166005_7556263489097394727_n.jpg?oh=f8d4a3e983bc758a0a6371c88f98ca66&oe=5A96CFBB" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/18274834_10210687595239617_1980792526209674765_n.jpg?oh=601467a63ab2f0c56b97a810eae4df6e&oe=5A9A77A7" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731500_10214154467524044_6201732780211646174_o.jpg?oh=82ad4d70f0f3d9753ccca93547811ca0&oe=5A98202D');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731500_10214154467524044_6201732780211646174_o.jpg?oh=82ad4d70f0f3d9753ccca93547811ca0&oe=5A98202D" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740979_10214154477164285_5092745520001808998_o.jpg?oh=0bfdef102cd6e10624a2899d5d573694&oe=5AD54091');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740979_10214154477164285_5092745520001808998_o.jpg?oh=0bfdef102cd6e10624a2899d5d573694&oe=5AD54091" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740747_10214154459923854_1234114197467373086_o.jpg?oh=26e89162f0274478881243eb019c93b9&oe=5AD72C38');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21740747_10214154459923854_1234114197467373086_o.jpg?oh=26e89162f0274478881243eb019c93b9&oe=5AD72C38" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-			<!--<li class="col-md-3">-->
-				<!--<div class="gallery-image">-->
-					<!--<div class="crop" style="background-image:url('https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731571_10214154487084533_4964330382680349086_o.jpg?oh=a43d0f5e15aec51ef9db78b5774470bd&oe=5AC8FBB5');">-->
-						<!--&lt;!&ndash;<img src="https://scontent.fijd1-1.fna.fbcdn.net/v/t31.0-8/21731571_10214154487084533_4964330382680349086_o.jpg?oh=a43d0f5e15aec51ef9db78b5774470bd&oe=5AC8FBB5" alt="">&ndash;&gt;-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
 		</ul>
 	</div>
 	</section>
@@ -283,7 +202,7 @@
 	<footer>
 	<div class="container text-center">
 		<p class="credits">
-			Copyright &copy; {{ facebook_user_data.user_info.basic_info.first }} {{ facebook_user_data.user_info.basic_info.last }} 2017
+			Copyright &copy; {{ facebook_user_data.user_info.basic_info.first_name }} {{ facebook_user_data.user_info.basic_info.last_name }} 2017
 		</p>
 	</div>
 	</footer>
