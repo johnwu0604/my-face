@@ -44,7 +44,6 @@ module.exports = {
     getFacebookId: function(token, callback) {
         FB.setAccessToken(token)
         FB.api('/me', function(response) {
-            console.log('response is : ' + response)
             return callback(response.id)
         })
     },
@@ -52,10 +51,9 @@ module.exports = {
     getFacebookBasicInfo: function(token, id, callback){
         FB.setAccessToken(token)
         FB.api('/me?fields=first_name,last_name,birthday,work,email,hometown,link,relationship_status', function (response) {
-            console.log('basic info response is : ' + response)
             var obj = {
-                "first": response.first_name,
-                "last": response.last_name,
+                "first_name": response.first_name,
+                "last_name": response.last_name,
                 "email": response.email,
                 "birthday": response.birthday,
                 "hometown": response.hometown.name,
@@ -69,14 +67,17 @@ module.exports = {
     getFacebookEducation: function(token, id, callback){
         FB.setAccessToken(token)
         FB.api('/me?fields=education', function (response) {
-            console.log('education response is : ' + response)
-            var education = []
+            var education = ''
             for( var i = 0 ; i < Object.keys(response.education).length; i++) {
-                var obj = {
-                    "school": response.education[i].school.name,
-                    "type": response.education[i].type
+                if (i == 0) {
+                    education += response.education[i].school.name
                 }
-                education.push(obj)
+                if (i != 0 && i == Object.keys(response.education).length - 1) {
+                    education += ' and ' + response.education[i].school.name
+                }
+                if (i != 0 && i != Object.keys(response.education).length - 1) {
+                    education += ', ' + response.education[i].school.name
+                }
             }
             return callback(education)
         })
@@ -85,7 +86,6 @@ module.exports = {
     getFacebookCover: function(token, id, callback) {
         FB.setAccessToken(token)
         FB.api('/me?fields=cover', function (response) {
-            console.log('cover response is : ' + response)
             return callback(response)
         })
     },
@@ -93,7 +93,6 @@ module.exports = {
     getFacebookAlbums: function(token, id, callback) {
         FB.setAccessToken(token)
         FB.api('/me/albums', function (response) {
-            console.log('albums response is : ' + response)
             return callback(response.url)
         })
     },
@@ -101,7 +100,6 @@ module.exports = {
     getFacebookProfilePicture: function(token, id, callback){
         FB.setAccessToken(token)
         FB.api('/me?fields=picture.height(500)', function (response) {
-            console.log('profile_pic response is : ' + response.picture)
             return callback(response.picture.data.url)
         })
     },
