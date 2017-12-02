@@ -1,4 +1,14 @@
 var FB = require('fb')
+var async = require('async')
+
+
+function parseNewFacebookPhotos(id, callback){
+    FB.api('/' + id +'?fields=images', function (res) {
+        // var elem = {"url":res.images[0].source}
+        // photos.push(elem)
+        return callback(res.images[0].source)
+    })
+}
 
 module.exports = {
     getFacebookId: function(token, callback) {
@@ -11,7 +21,15 @@ module.exports = {
 
     getFacebookBasicInfo: function(token, id, callback){
         FB.setAccessToken(token)
-        FB.api('/me?fields=first_name,last_name,birthday,education,work,email,hometown,languages,link,locations,relationship_status', function (response) {
+        FB.api('/me?fields=first_name,last_name,birthday,education.limit(1),work,email,hometown,languages,link,locations,relationship_status', function (response) {
+            console.log('basic info response is : ' + response)
+            return callback(response)
+        })
+    },
+
+    getFacebookEducation: function(token, id, callback){
+        FB.setAccessToken(token)
+        FB.api('/me?fields=first_name,last_name,birthday,education.limit(1),work,email,hometown,languages,link,locations,relationship_status', function (response) {
             console.log('basic info response is : ' + response)
             return callback(response)
         })
@@ -61,20 +79,20 @@ module.exports = {
             // console.log(array[0].likes);
             // console.log(array[0].id);
             var photos = [];
-            for(var i = 0; i < 12 ; i++){
-                FB.api('/' + array[i].id +'?fields=images', function (res) {
-                    // console.log(res.images[0].source);
-                    console.log("okok")
-                    var elem = {"url":res.images[0].source}
-                    photos.push(elem)
-                })
-            }
-            console.log("nono")
-            return callback(photos);
+
+            async.series([
+                function(callback){
+                    for(var i = 0 ; i < 12 ; i ++) {
+                        var img_id = array[i].id
+                        parseNewFacebookPhotos(img_id, function (url) {
+                            photos.push({"url": url})
+                        })
+                    }
+                    return callback()
+                }
+            ], function(){
+                return callback(photos);
+            })
         })
-    },
-
-    parseNewFacebookPhotos: function(array, callback){
-
     }
 }
