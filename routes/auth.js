@@ -5,7 +5,7 @@ var CircularJSON = require('circular-json')
 passport.use(new Strategy({
         clientID: '1546707545396988',
         clientSecret: '7ff1392c924c3e724f28734e9c907ace',
-        callbackURL: 'http://my-face-dev.us-east-1.elasticbeanstalk.com/test'
+        callbackURL: '/test'
     },
     function(accessToken, refreshToken, profile, cb) {
         // In this example, the user's Facebook profile is supplied as the user
