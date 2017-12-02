@@ -53,15 +53,6 @@ angular.module('mainController', ['facebook'])
             }, { scope: permissions.join(', '), return_scopes: true });
         };
 
-        // $scope.login = function () {
-        //     Facebook.login(function(response) {
-        //         console.log('Result: ' + JSON.stringify(response));
-        //         $scope.token = response.authResponse.accessToken;
-        //         $scope.loginStatus = response.status;
-        //         $scope.getUserData();
-        //     });
-        // };
-
         $scope.removeAuth = function () {
             Facebook.api({
                 method: 'Auth.revokeAuthorization'
