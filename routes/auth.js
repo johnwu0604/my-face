@@ -39,7 +39,7 @@ module.exports = function(app) {
         });
 
     app.get('/test', function(req, res) {
-        console.log('Access Token: ' + req.body);
+        console.log('Access Token: ' + req.user.token);
         res.send('good');
     });
 
