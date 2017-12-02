@@ -49,17 +49,34 @@ module.exports = {
 
     getFacebookBasicInfo: function(token, id, callback){
         FB.setAccessToken(token)
-        FB.api('/me?fields=first_name,last_name,birthday,education.limit(1),work,email,hometown,languages,link,locations,relationship_status', function (response) {
+        FB.api('/me?fields=first_name,last_name,birthday,work,email,hometown,link,relationship_status', function (response) {
             console.log('basic info response is : ' + response)
-            return callback(response)
+            var obj = {
+                "first": response.first_name,
+                "last": response.last_name,
+                "email": response.email,
+                "birthday": response.birthday,
+                "hometown": response.hometown.name,
+                "link": response.link,
+                "relationship_status": response.relationship_status,
+            }
+            return callback(obj)
         })
     },
 
     getFacebookEducation: function(token, id, callback){
         FB.setAccessToken(token)
-        FB.api('/me?fields=first_name,last_name,birthday,education.limit(1),work,email,hometown,languages,link,locations,relationship_status', function (response) {
-            console.log('basic info response is : ' + response)
-            return callback(response)
+        FB.api('/me?fields=education', function (response) {
+            console.log('education response is : ' + response)
+            var education = []
+            for( var i = 0 ; i < Object.keys(response.education).length; i++) {
+                var obj = {
+                    "school": response.education[i].school.name,
+                    "type": response.education[i].type
+                }
+                education.push(obj)
+            }
+            return callback(education)
         })
     },
 

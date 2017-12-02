@@ -13,7 +13,7 @@ function getFacebookData(token, id, callback){
     async.parallel([
         function(callback) {
             FacebookService.getFacebookBasicInfo(token, id, function(basic){
-                info.info = basic
+                info.basic_info = basic
                 return callback()
             })
 
@@ -42,6 +42,13 @@ function getFacebookData(token, id, callback){
         function(callback){
             FacebookService.getFacebookPhotos(token, id, function(photo){
                 info.photos = photo
+                return callback();
+            })
+        },
+
+        function(callback){
+            FacebookService.getFacebookEducation(token, id, function(educ){
+                info.education = educ
                 return callback();
             })
         }
