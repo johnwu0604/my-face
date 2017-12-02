@@ -22,6 +22,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 	<script src="js/angular/controller/mainController.js"></script>
 	<script src="js/angular/service/facebookService.js"></script>
+	<script src="js/angular/service/emailService.js"></script>
 	<script src="js/angular/core.js"></script>
 </head>
 
@@ -185,12 +186,13 @@
 							Your message has been sent. Thank you!
 						</div>
 					</div>
-					<form method="post" action="contact.php" id="contactform">
+					<form id="contactform">
 						<div class="form">
-							<input type="text" name="name" placeholder="Your Name *">
-							<input type="text" name="email" placeholder="Your E-mail Address *">
-							<textarea name="comment" rows="7" placeholder="Type your Message *"></textarea>
-							<input type="submit" id="submit" class="clearfix btn" value="Send">
+							<input type="text" name="name" placeholder="Your Name *" ng-model="emailFormData.sender_name">
+							<input type="text" name="email" placeholder="Your E-mail Address *" ng-model="emailFormData.sender_email">
+							<textarea name="comment" rows="7" placeholder="Type your Message *" ng-model="emailFormData.message"></textarea>
+							<p>{{ email_success_message }}</p>
+							<input type="submit" id="submit" class="clearfix btn" ng-click="sendEmail()">
 						</div>
 					</form>
 				</div>
