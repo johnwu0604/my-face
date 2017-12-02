@@ -1,26 +1,40 @@
 var passport = require('passport');
-var Strategy = require('passport-facebook').Strategy;
 var CircularJSON = require('circular-json')
+var FacebookTokenStrategy = require('passport-facebook-token');
 
-passport.use(new Strategy({
+passport.use(new FacebookTokenStrategy({
         clientID: '1546707545396988',
-        clientSecret: '7ff1392c924c3e724f28734e9c907ace',
-        callbackURL: '/test'
-    },
-    function(accessToken, refreshToken, profile, cb) {
-        // In this example, the user's Facebook profile is supplied as the user
-        // record.  In a production-quality application, the Facebook profile should
-        // be associated with a user record in the application's database, which
-        // allows for account linking and authentication with other identity
-        // providers.
+        clientSecret: '7ff1392c924c3e724f28734e9c907ace'
+    }, function(accessToken, refreshToken, profile, done) {
         var user = {
             'email': profile.emails[0].value,
             'name' : profile.name.givenName + ' ' + profile.name.familyName,
             'id'   : profile.id,
             'token': accessToken
         }
-        return cb(null, user);
-    }));
+        return done(null, user);
+        }
+    ));
+
+// passport.use(new Strategy({
+//         clientID: '1546707545396988',
+//         clientSecret: '7ff1392c924c3e724f28734e9c907ace',
+//         callbackURL: '/test'
+//     },
+//     function(accessToken, refreshToken, profile, cb) {
+//         // In this example, the user's Facebook profile is supplied as the user
+//         // record.  In a production-quality application, the Facebook profile should
+//         // be associated with a user record in the application's database, which
+//         // allows for account linking and authentication with other identity
+//         // providers.
+//         var user = {
+//             'email': profile.emails[0].value,
+//             'name' : profile.name.givenName + ' ' + profile.name.familyName,
+//             'id'   : profile.id,
+//             'token': accessToken
+//         }
+//         return cb(null, user);
+//     }));
 
 passport.serializeUser(function(user, cb) {
     cb(null, user);
@@ -38,12 +52,20 @@ module.exports = function(app) {
     app.get('/auth/facebook',
         passport.authenticate('facebook'));
 
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', { failureRedirect: '/login' }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        });
+    // app.get('/auth/facebook/callback',
+    //     passport.authenticate('facebook', { failureRedirect: '/login' }),
+    //     function(req, res) {
+    //         // Successful authentication, redirect home.
+    //         res.redirect('/');
+    //     });
+
+    app.get('/auth/facebook',
+        passport.authenticate('facebook-token'),
+        function (req, res) {
+            // do something with req.user
+            res.send(req.user);
+        }
+    );
 
     app.get('/test', function(req, res) {
         console.log('Access Token Test: ' + CircularJSON.stringify(req));
