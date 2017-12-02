@@ -38,7 +38,9 @@ angular.module('mainController', ['facebook'])
         };
 
         $scope.login = function () {
-            var permissions = ['user_photos'];
+            var permissions = ['user_photos', 'email', 'user_about_me', 'user_birthday', 'user_education_history', 'user_friends',
+            'user_hometown', 'user_likes', 'user_location', 'user_posts', 'user_relationships', 'user_relationship_details',
+            'user_work_history'];
             Facebook.login(function(response) {
                 if (response.status == 'connected') {
                     console.log('Result: ' + JSON.stringify(response));
