@@ -1,6 +1,6 @@
 angular.module('mainController', [])
 
-    .controller('facebookController', ['$scope','$http','Facebook', function($scope, $http, Facebook) {
+    .controller('facebookController', ['$scope','$http','Facebook', 'Email', function($scope, $http, Facebook, Email) {
 
         $scope.facebook_user_data = {};
         $scope.loading = true;
@@ -12,5 +12,18 @@ angular.module('mainController', [])
             $scope.facebook_user_data = data;
             $scope.loading = false;
         })
+
+
+
+        $scope.sendEmail = function() {
+
+            Email.create($scope.emailFormData).success(function(result) {
+
+            })
+
+
+        };
+
+
 
     }]);
