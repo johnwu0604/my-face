@@ -17,13 +17,16 @@ angular.module('mainController', ['facebook'])
         $scope.facebookIsReady = false;
         $scope.user = null;
 
-        var token = 'EAACEdEose0cBAJ6hRhUVbMdneKbVmEooyDDv25pao6IrR5O2rShjWec1WVZCvuO2V59FdZBBd5YuXSZASBaULZBZC5lOzXZC65izbZBF2wT1WiCcp6Dl3DVswpYsBNVDYbwINFlbDTPqeHtALidZAzcUM28S9ZA1ZB3qkszcJdwDx70yPJWGhKZAIvf2IYw6GZBKfcsijkKGME0oyAZDZD';
+        $scope.token = '';
 
-        FacebookService.getUserData(token).success(function(data) {
-            console.log(data);
-            $scope.facebook_user_data = data;
-            $scope.loading = false;
-        })
+
+        $scope.getUserData = function() {
+            FacebookService.getUserData($scope.token).success(function(data) {
+                console.log(data);
+                $scope.facebook_user_data = data;
+                $scope.loading = false;
+            })
+        }
 
 
 
@@ -37,8 +40,9 @@ angular.module('mainController', ['facebook'])
 
         $scope.login = function () {
             Facebook.login(function(response) {
-                console.log('Login: '+ JSON.stringify(response));
+                $scope.token = response.authResponse.accessToken;
                 $scope.loginStatus = response.status;
+                $scope.getUserData();
             });
         };
 
