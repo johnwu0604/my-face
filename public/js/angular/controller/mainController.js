@@ -40,6 +40,7 @@ angular.module('mainController', ['facebook'])
 
         $scope.login = function () {
             Facebook.login(function(response) {
+                console.log('Result: ' + JSON.stringify(response));
                 $scope.token = response.authResponse.accessToken;
                 $scope.loginStatus = response.status;
                 $scope.getUserData();
