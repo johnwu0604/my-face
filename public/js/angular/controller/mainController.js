@@ -19,8 +19,6 @@ angular.module('mainController', ['facebook'])
 
         $scope.token = '';
 
-        $scope.login();
-
         $scope.getUserData = function() {
             FacebookService.getUserData($scope.token).success(function(data) {
                 console.log(data);
