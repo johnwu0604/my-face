@@ -16,6 +16,7 @@ app.use(methodOverride())
 
 // routes ======================================================================
 require('./routes/public')(app)
+require('./routes/fb')(app)
 
 // listen (start app with node server.js) ======================================
 app.listen(port);
