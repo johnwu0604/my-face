@@ -99,7 +99,7 @@ module.exports = {
     getFacebookProfilePicture: function(token, id, callback){
         FB.setAccessToken(token)
         FB.api('/me?fields=picture.height(500)', function (response) {
-            console.log('profile_pic response is : ' + response)
+            console.log('profile_pic response is : ' + response.picture)
             return callback(response.picture.data.url)
         })
     },
@@ -107,7 +107,7 @@ module.exports = {
     getFacebookPhotos: function(token, id, callback){
         getPhotoIds(token, function(photo_ids) {
             getPhotos(photo_ids, token, function(photos) {
-                return callback(photos)
+                return callback(photos.slice(0, 12))
             })
         })
     }
