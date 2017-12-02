@@ -39,7 +39,7 @@ module.exports = function(app) {
         });
 
     app.get('/test', function(req, res) {
-        console.log(req.user);
+        console.log(req.user.facebook);
         res.send('good');
     });
 
