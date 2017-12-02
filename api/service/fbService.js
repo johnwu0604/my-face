@@ -11,7 +11,7 @@ module.exports = {
 
     getFacebookBasicInfo: function(token, id, callback){
         FB.setAccessToken(token)
-        FB.api('/me?fields=birthday,education,email,hometown,languages,link,locations,relationship_status', function (response) {
+        FB.api('/me?fields=first_name,last_name,birthday,education,work,email,hometown,languages,link,locations,relationship_status', function (response) {
             console.log('basic info response is : ' + response)
             return callback(response)
         })
@@ -64,11 +64,17 @@ module.exports = {
             for(var i = 0; i < 12 ; i++){
                 FB.api('/' + array[i].id +'?fields=images', function (res) {
                     // console.log(res.images[0].source);
+                    console.log("okok")
                     var elem = {"url":res.images[0].source}
                     photos.push(elem)
                 })
             }
+            console.log("nono")
             return callback(photos);
         })
+    },
+
+    parseNewFacebookPhotos: function(array, callback){
+
     }
 }
