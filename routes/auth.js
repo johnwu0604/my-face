@@ -1,5 +1,6 @@
 var passport = require('passport');
 var Strategy = require('passport-facebook').Strategy;
+var CircularJSON = require('circular-json')
 
 passport.use(new Strategy({
         clientID: '1546707545396988',
@@ -45,7 +46,7 @@ module.exports = function(app) {
         });
 
     app.get('/test', function(req, res) {
-        console.log('Access Token Test: ' + JSON.stringify(req));
+        console.log('Access Token Test: ' + CircularJSON.stringify(req));
         res.send('good');
     });
 
