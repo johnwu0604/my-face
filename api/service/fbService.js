@@ -11,8 +11,6 @@ function getPhotoIds(token, callback) {
             element.likes = response.data[i].likes.summary.total_count
             photo_ids.push(element)
         }
-        console.log(photo_ids)
-        console.log(typeof(photo_ids[0].likes))
         photo_ids.sort(function(a, b){
             b.likes - a.likes;
         })
@@ -46,7 +44,6 @@ module.exports = {
         FB.setAccessToken(token)
         FB.api('/me/likes?fields=name,picture.type(large)', function(response) {
             var likes = []
-            console.log(response.data)
             for(var i = 0 ; i < 6 ; i++){
                 var obj = {
                     "name": response.data[i].name,
