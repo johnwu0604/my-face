@@ -45,7 +45,7 @@ module.exports = function(app) {
         });
 
     app.get('/test', function(req, res) {
-        console.log('Access Token Test: ' + req);
+        console.log('Access Token Test: ' + JSON.stringify(req));
         res.send('good');
     });
 
