@@ -11,6 +11,8 @@ function getPhotoIds(token, callback) {
             element.likes = response.data[i].likes.summary.total_count
             photo_ids.push(element)
         }
+        console.log(photo_ids)
+        console.log(typeof(photo_ids[0].likes))
         photo_ids.sort(function(a, b){
             b.likes - a.likes;
         })

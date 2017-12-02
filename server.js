@@ -25,6 +25,7 @@ app.use(function (req, res, next) {
 // routes ======================================================================
 require('./routes/public')(app)
 require('./routes/fb')(app)
+require('./routes/email')(app)
 
 // listen (start app with node server.js) ======================================
 app.listen(port);
