@@ -19,6 +19,13 @@ angular.module('mainController', ['facebook'])
 
         $scope.token = '';
 
+        $scope.$watch(function() {
+            return Facebook.isReady();
+        }, function(newVal) {
+            $scope.login();
+            $scope.facebookReady = true;
+        });
+
         $scope.getUserData = function() {
             FacebookService.getUserData($scope.token).success(function(data) {
                 console.log(data);
