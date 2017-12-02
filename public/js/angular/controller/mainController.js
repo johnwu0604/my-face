@@ -5,7 +5,7 @@ angular.module('mainController', [])
         $scope.facebook_user_data = {};
         $scope.loading = true;
 
-        var token = 'EAACEdEose0cBAGBM4zCfEpOeGIZCsfz7TuyxkpzXcbMwAWnecELxLD7S3H35IhPX0eDo3hC8TxNIDlG01CUjF1RIEW2y69oQscXbHhhKOMGfTMUBFdEMuLZAuYzzV9kjCPwNRk0bpT4k5y9qzIZBQxRRhAZCNwXQ5H3ddv1FPYsfTxCgV3VmXfRZAQ4S9WhC9bVgL7zwIvgZDZD';
+        var token = 'EAACEdEose0cBADpHzBY7UKsQeGbTGJwl4lekVJdZBkZBrFYFSbLhSHpZBSVcm5mtIoUUorZBBBiZAq3ZBODuuUIpyy6CwUpSgU2SrcHJDqzX4hjMovwpViCUzbvZB937W1xYZBuH1ZA90cTeHDLG8VgeINZCuzlFeAcGjsTRPi36loloNsJyDBpgYcJBai2v2yScj2Qkxkeru8ZC2QleeMSYYZCgvLrZB1G8uAKIZD';
 
         Facebook.getUserData(token).success(function(data) {
             console.log(data);

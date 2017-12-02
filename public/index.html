@@ -35,7 +35,7 @@
 			<i class="fa fa-bars"></i>
 			</button>
 			<a class="navbar-brand page-scroll" href="index.html">
-			John Wu</a>
+				{{ facebook_user_data.user_info.basic_info.first }} {{ facebook_user_data.user_info.basic_info.last }}</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
@@ -65,7 +65,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<h1 class="brand-heading">John Wu</h1>
+					<h1 class="brand-heading">{{ facebook_user_data.user_info.basic_info.first }} {{ facebook_user_data.user_info.basic_info.last }}</h1>
 					<p class="intro-text">
 						Welcome to my website
 					</p>
@@ -84,10 +84,10 @@
 		<div class="row">
 			<h2>LIL' ABOUT ME</h2>
 			<div class="col-lg-8 col-lg-offset-2">
-				<h1>User ID: {{ facebook_user_data.user_id }}</h1>
+				<img src="{{ facebook_user_data.user_info.profile_picture }}">
 				<p>
-					Hi my name is Tiffany Wang and I was born in {{ facebook_user_data.user_info.info.hometown.name }}. I'm currently studying engineering
-					at {{ facebook_user_data.user_info.info.education[0].school.name }}
+					Hi my name is {{ facebook_user_data.user_info.basic_info.first }} {{ facebook_user_data.user_info.basic_info.last }} and I was born in {{ facebook_user_data.user_info.basic_info.hometown }}. I'm currently studying engineering
+					at {{ facebook_user_data.user_info.education[1].school }}
 				</p>
 				<ul class="list-inline banner-social-buttons">
 					<li>
@@ -283,7 +283,7 @@
 	<footer>
 	<div class="container text-center">
 		<p class="credits">
-			Copyright &copy; John Wu 2017
+			Copyright &copy; {{ facebook_user_data.user_info.basic_info.first }} {{ facebook_user_data.user_info.basic_info.last }} 2017
 		</p>
 	</div>
 	</footer>
