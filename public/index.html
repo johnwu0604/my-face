@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="my-face">
 
 <head>
 	<meta charset="utf-8">
@@ -18,9 +18,14 @@
 	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<!-- Angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="js/angular/controller/mainController.js"></script>
+	<script src="js/angular/service/facebookService.js"></script>
+	<script src="js/angular/core.js"></script>
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-controller="facebookController">
 
 	<!-- Navigation -->
 	<nav class="navbar navbar-custom navbar-fixed-top navbar-inverse" role="navigation">
@@ -79,6 +84,7 @@
 		<div class="row">
 			<h2>LIL' ABOUT ME</h2>
 			<div class="col-lg-8 col-lg-offset-2">
+				<h1>User ID: {{ facebook_user_data.user_id }}</h1>
 				<p>
 					I was born in Newfoundland and grew up in Vancouver. Some of my interests include basketball, coding, and
 					cooking. I like long walks on the beach too. You can find social media links below.
