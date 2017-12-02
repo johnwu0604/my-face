@@ -37,7 +37,7 @@ angular.module('mainController', ['facebook'])
 
         $scope.login = function () {
             Facebook.login(function(response) {
-                console.log('Login: '+ response);
+                console.log('Login: '+ JSON.stringify(response));
                 $scope.loginStatus = response.status;
             });
         };
