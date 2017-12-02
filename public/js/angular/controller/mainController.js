@@ -42,6 +42,16 @@ angular.module('mainController', ['facebook'])
             });
         };
 
+        $scope.removeAuth = function () {
+            Facebook.api({
+                method: 'Auth.revokeAuthorization'
+            }, function(response) {
+                Facebook.getLoginStatus(function(response) {
+                    $scope.loginStatus = response.status;
+                });
+            });
+        };
+
 
 
 
