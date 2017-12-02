@@ -1,11 +1,39 @@
 var FB = require('fb')
 var async = require('async')
 
+function getPhotoIds(token, callback) {
+    FB.setAccessToken(token)
+    FB.api('/me/photos?pretty=0&fields=likes.limit(0).summary(true)&since=2016-07-01&limit=30', function (response) {
+        var photo_ids = []
+        for(var i = 0 ; i < Object.keys(response.data).length; i++){
+            var element =  {}
+            element.id = response.data[i].id
+            element.likes = response.data[i].likes.summary.total_count
+            photo_ids.push(element)
+        }
+        photo_ids.sort(function(a, b){
+            b.likes - a.likes;
+        })
+        return callback(photo_ids)
+    })
+}
 
-function parseNewFacebookPhotos(id, callback){
+function getPhotos(photo_ids, token, callback) {
+    var photos = []
+    async.forEach(photo_ids, function (photo, callback){
+        getPhoto(photo.id, token, function (url) {
+            photos.push({"url": url})
+            callback()
+        })
+    }, function(err) {
+        if (err) console.log(err)
+        return callback(photos)
+    })
+}
+
+function getPhoto(id, token, callback){
+    FB.setAccessToken(token)
     FB.api('/' + id +'?fields=images', function (res) {
-        // var elem = {"url":res.images[0].source}
-        // photos.push(elem)
         return callback(res.images[0].source)
     })
 }
@@ -60,38 +88,9 @@ module.exports = {
     },
 
     getFacebookPhotos: function(token, id, callback){
-        FB.setAccessToken(token)
-        FB.api('/me/photos?pretty=0&fields=likes.limit(0).summary(true)&since=2016-07-01&limit=30', function (response) {
-            console.log('photos response is : ' + response)
-            var array = [];
-            for(var i = 0 ; i < Object.keys(response.data).length; i++){
-                var element =  {};
-                element.id = response.data[i].id;
-                element.likes = response.data[i].likes.summary.total_count;
-                array.push(element)
-            }
-
-            array.sort(function(a, b){
-                b.likes - a.likes;
-            });
-            //
-            // console.log(array);
-            // console.log(array[0].likes);
-            // console.log(array[0].id);
-            var photos = [];
-
-            async.series([
-                function(callback){
-                    for(var i = 0 ; i < 12 ; i ++) {
-                        var img_id = array[i].id
-                        parseNewFacebookPhotos(img_id, function (url) {
-                            photos.push({"url": url})
-                        })
-                    }
-                    return callback()
-                }
-            ], function(){
-                return callback(photos);
+        getPhotoIds(token, function(photo_ids) {
+            getPhotos(photo_ids, token, function(photos) {
+                return callback(photos)
             })
         })
     }
