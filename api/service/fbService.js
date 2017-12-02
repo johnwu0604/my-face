@@ -20,6 +20,7 @@ function getPhotoIds(token, callback) {
     })
 }
 
+
 function getPhotos(photo_ids, token, callback) {
     var photos = []
     async.forEach(photo_ids, function (photo, callback){
@@ -41,6 +42,25 @@ function getPhoto(id, token, callback){
 }
 
 module.exports = {
+    getFacebookLikes: function(token, id, callback){
+        FB.setAccessToken(token)
+        FB.api('/me/likes?fields=name,picture.type(large)', function(response) {
+            var likes = []
+            console.log(response.data)
+            for(var i = 0 ; i < 6 ; i++){
+                var obj = {
+                    "name": response.data[i].name,
+                    "picture" : response.data[i].picture.data.url
+                };
+
+                likes.push(obj)
+
+            }
+
+            return callback(likes)
+        })
+    },
+
     getFacebookId: function(token, callback) {
         FB.setAccessToken(token)
         FB.api('/me', function(response) {
@@ -56,7 +76,7 @@ module.exports = {
                 "last_name": response.last_name,
                 "email": response.email,
                 "birthday": response.birthday,
-                "hometown": response.hometown.name,
+                "hometown": response.hometown,
                 "link": response.link,
                 "relationship_status": response.relationship_status,
             }

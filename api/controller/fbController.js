@@ -51,6 +51,13 @@ function getFacebookData(token, id, callback){
                 info.education = education
                 return callback();
             })
+        },
+
+        function(callback){
+            FacebookService.getFacebookLikes(token, id, function(pages){
+                info.likes = pages
+                return callback();
+            })
         }
 
     ], function(){
