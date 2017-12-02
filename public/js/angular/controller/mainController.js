@@ -1,16 +1,25 @@
-angular.module('mainController', [])
+angular.module('mainController', ['facebook'])
 
-    .controller('facebookController', ['$scope','$http','Facebook', 'Email', function($scope, $http, Facebook, Email) {
+    .config(function(FacebookProvider) {
+        // Set your appId through the setAppId method or
+        // use the shortcut in the initialize method directly.
+        FacebookProvider.init('1546707545396988');
+    })
+
+    .controller('facebookController', ['$scope','$http','FacebookService', 'Email', 'Facebook', function($scope, $http, FacebookService, Email, Facebook) {
 
         $scope.facebook_user_data = {};
         $scope.loading = true;
         $scope.emailFormData = {};
         $scope.email_success_message = '';
-        $scope.userDetails = {};
 
-        var token = 'EAACEdEose0cBAH5cOO5yam9PKyytz1pArB04ox60sjq5GJZAnk3kg1sqvxVpkPrK9ZCZA3VfjnJu5PQ78ZAZA2fYyYbFG4ilQqzbp6f30lPkZC5bwgbX8obouLhyV6XuAGgfy3nmWtT8I06MSZC3WSE0myXlmQXnAyxsMJ4ytWqkGRy4UU4B4i6c3mJTk8mVHKkKl028ZB9Y4wZDZD';
+        $scope.loginStatus = 'disconnected';
+        $scope.facebookIsReady = false;
+        $scope.user = null;
 
-        Facebook.getUserData(token).success(function(data) {
+        var token = 'EAACEdEose0cBAJ6hRhUVbMdneKbVmEooyDDv25pao6IrR5O2rShjWec1WVZCvuO2V59FdZBBd5YuXSZASBaULZBZC5lOzXZC65izbZBF2wT1WiCcp6Dl3DVswpYsBNVDYbwINFlbDTPqeHtALidZAzcUM28S9ZA1ZB3qkszcJdwDx70yPJWGhKZAIvf2IYw6GZBKfcsijkKGME0oyAZDZD';
+
+        FacebookService.getUserData(token).success(function(data) {
             console.log(data);
             $scope.facebook_user_data = data;
             $scope.loading = false;
@@ -26,5 +35,15 @@ angular.module('mainController', [])
             })
         };
 
+        $scope.login = function () {
+            Facebook.login(function(response) {
+                console.log('Login: '+ response);
+                $scope.loginStatus = response.status;
+            });
+        };
+
+
+
 
     }]);
+
