@@ -75,20 +75,6 @@ myMap = function myMap(data){
 }
 
 
-login = function (Facebook, callback) {
-    var permissions = ['user_photos', 'email', 'user_about_me', 'user_birthday', 'user_education_history', 'user_friends',
-        'user_hometown', 'user_likes', 'user_location', 'user_posts', 'user_relationships', 'user_relationship_details',
-        'user_work_history', 'user_tagged_places']
-    Facebook.login(function(response) {
-        if (response.status == 'connected') {
-            console.log('Result: ' + JSON.stringify(response))
-            return callback(response.authResponse.accessToken)
-        } else {
-            console.log('Failed to connect')
-        }
-    }, { scope: permissions.join(', '), return_scopes: true })
-}
-
 removeAuth = function (Facebook, callback) {
     Facebook.api({
         method: 'Auth.revokeAuthorization'
@@ -104,7 +90,7 @@ login = function (Facebook, callback) {
     console.log("hello")
     var permissions = ['user_photos', 'email', 'user_about_me', 'user_birthday', 'user_education_history', 'user_friends',
         'user_hometown', 'user_likes', 'user_location', 'user_posts', 'user_relationships', 'user_relationship_details',
-        'user_work_history']
+        'user_work_history', 'user_tagged_places']
     Facebook.login(function(response) {
         if (response.status == 'connected') {
             console.log('Result: ' + JSON.stringify(response))
