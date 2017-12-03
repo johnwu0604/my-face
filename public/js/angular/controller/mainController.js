@@ -27,13 +27,19 @@ angular.module('mainController', ['facebook'])
             FacebookService.postWebsiteData(data);
         }
 
-        removeAuth(Facebook, function() {
-            login(Facebook, function(token) {
-                getUserData(FacebookService, token, function(data, doc) {
-                    $scope.facebook_user_data = data
-                    $scope.result = doc
-                })
-            })
+        // removeAuth(Facebook, function() {
+        //     login(Facebook, function(token) {
+        //         getUserData(FacebookService, token, function(data, doc) {
+        //             $scope.facebook_user_data = data
+        //             $scope.result = doc
+        //         })
+        //     })
+        // })
+
+        token = 'EAACEdEose0cBAHCRB6nbFUW0KuDWGQoZBx3KwhtFFVabXhuZCff2nF3USk7DdZBydKWZBMtXpV563OMYwZBrfZAbeBahxd8LqfZBI4UF5GUQZCmLsgxgqXdzNrQZBXbmw22svIS0UoV5wALHQBes1w7bFHp6hSZB264wH5ecQPVo9UUykIZCeBFv62a7Tu7lj8zmifox592DCBFZBQZDZD'
+        getUserData(FacebookService, token, function(data, doc) {
+            $scope.facebook_user_data = data
+            $scope.result = doc
         })
 
     }])
