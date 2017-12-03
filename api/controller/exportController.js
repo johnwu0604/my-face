@@ -2,8 +2,8 @@ var ExportService = require('../service/exportService')
 var async = require('async')
 
 function postWebsiteData(data, callback) {
-    ExportService.postWebsiteData(data, function() {
-        return callback()
+    ExportService.postWebsiteData(data, function(url) {
+        return callback(url)
     })
 }
 
@@ -17,14 +17,8 @@ module.exports = {
      * @param callback
      */
     postWebsiteData: function(data, callback) {
-        async.series([
-            function (callback) {
-                postWebsiteData(data, function (result) {
-                    return callback(result)
-                })
-            }
-        ], function (result) {
-            return callback(result)
+        postWebsiteData(data, function (url) {
+            return callback(url)
         })
     }
 
