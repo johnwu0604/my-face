@@ -23,7 +23,12 @@ angular.module('mainController', ['facebook'])
         }
 
         $scope.exportCtrl = function(){
-            var data = {'html': $scope.result.documentElement.outerHTML}
+            var body = $scope.result
+            var parent = body.getElementById('page-top')
+            var child = body.getElementById('export')
+            parent.removeChild(child);
+            console.log(body.documentElement.outerHTML);
+            var data = {'html': body.documentElement.outerHTML}
             FacebookService.postWebsiteData(data, function(url) {
                 window.open(url, "_blank");
             })
@@ -39,21 +44,11 @@ angular.module('mainController', ['facebook'])
                 })
             })
         })
-
-
-        // token = 'EAACEdEose0cBAGm5YhYzkjBmacVm0OBZBLz00rI1ka56IVHg3QinBwTxBT7R3ihJVU34ISE1mUdDiZBSm9rsDqMAdL3IE7nbvNAUcn25M3hxBPBFXhLBTfS9iLLyAGbyusAxPYg5fq32KKyZAuSmWef9iP2kFNLvfZAKK2IGZBj81yjYMhmweIRjX0mt3Nb2DgXTR97t8kgZDZD'
-        // getUserData(FacebookService, token, function(data, doc) {
-        //     $scope.facebook_user_data = data
-        //     $scope.result = doc
-        //     var places = $scope.facebook_user_data.user_info.places
-        //     myMap(places)
-        // })
-
     }])
 
 myMap = function myMap(data){
     var myCenter = new google.maps.LatLng(data[0].lat, data[0].long);
-    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:true, mapTypeId:google.maps.MapTypeId.ROADMAP};
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
     for(var i = 0 ; i < data.length ; i ++){
         var myCenter = new google.maps.LatLng(data[i].lat, data[i].long);
