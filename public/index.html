@@ -89,13 +89,13 @@
 				<img class="img-circle" ng-src="{{ facebook_user_data.user_info.profile_picture }}"><br><br>
 				<p>
 					Hey There! My name is {{ facebook_user_data.user_info.basic_info.first_name }} {{ facebook_user_data.user_info.basic_info.last_name }} and thank you for visiting
-					my personal website. A little bit about myself, I grew up in the beautiful city of {{ facebook_user_data.user_info.basic_info.hometown }}. My educational
+					my personal website. A little bit about myself, I currently live in the beautiful city of {{ facebook_user_data.user_info.basic_info.location.name || "Montreal" }}. My educational
 					background includes studying at {{ facebook_user_data.user_info.education }}. If you need to contact me, feel free to reach out using the form below or
 					connect with me through one of the following social media links.
 				</p>
 				<ul class="list-inline banner-social-buttons">
 					<li>
-						<a href="https://twitter.com/wowthemesnet" target="_blank" class="btn btnghost btn-lg"><i class="fa fa-instagram fa-fw"></i><span class="network-name">Instagram</span></a>
+						<a href="https://instagram.com/" target="_blank" class="btn btnghost btn-lg"><i class="fa fa-instagram fa-fw"></i><span class="network-name">Instagram</span></a>
 					</li>
 					<li>
 						<a ng-href="{{ facebook_user_data.user_info.basic_info.link }}" target="_blank" class="btn btnghost btn-lg"><i class="fa fa-facebook fa-fw"></i><span class="network-name">Facebook</span></a>
@@ -126,60 +126,6 @@
 	</section>
 	
 
-	<!--&lt;!&ndash; Timeline &ndash;&gt;-->
-	<!--<section id="timeline">-->
-		<!--<div class="container content-section text-center">-->
-			<!--<div class="row">-->
-				<!--<h2>My Life Story</h2>-->
-				<!--<ul class="timeline">-->
-					<!--<li>-->
-						<!--<div class="timeline-badge info"><i class="glyphicon glyphicon-education"></i></div>-->
-						<!--<div class="timeline-panel">-->
-							<!--<div class="timeline-heading">-->
-								<!--<h4 class="timeline-title">2014</h4>-->
-							<!--</div>-->
-							<!--<div class="timeline-body">-->
-								<!--<p>I moved to Montreal to start University at McGill</p>-->
-							<!--</div>-->
-						<!--</div>-->
-					<!--</li>-->
-					<!--<li class="timeline-inverted">-->
-						<!--<div class="timeline-badge warning"><i class="glyphicon glyphicon-briefcase"></i></div>-->
-						<!--<div class="timeline-panel">-->
-							<!--<div class="timeline-heading">-->
-								<!--<h4 class="timeline-title">2016</h4>-->
-							<!--</div>-->
-							<!--<div class="timeline-body">-->
-								<!--<p>I moved to Ottawa to work at Mxi Technologies</p>-->
-							<!--</div>-->
-						<!--</div>-->
-					<!--</li>-->
-					<!--<li>-->
-						<!--<div class="timeline-badge danger"><i class="glyphicon glyphicon-briefcase"></i></div>-->
-						<!--<div class="timeline-panel">-->
-							<!--<div class="timeline-heading">-->
-								<!--<h4 class="timeline-title">2017</h4>-->
-							<!--</div>-->
-							<!--<div class="timeline-body">-->
-								<!--<p>Went to Tokyo to work at Flickfit</p>-->
-							<!--</div>-->
-						<!--</div>-->
-					<!--</li>-->
-					<!--<li class="timeline-inverted">-->
-						<!--<div class="timeline-badge default"><i class="glyphicon glyphicon-usd"></i></div>-->
-						<!--<div class="timeline-panel">-->
-							<!--<div class="timeline-heading">-->
-								<!--<h4 class="timeline-title">2018</h4>-->
-							<!--</div>-->
-							<!--<div class="timeline-body">-->
-								<!--<p>Dropped outta McGill cause my startup blew up</p>-->
-							<!--</div>-->
-						<!--</div>-->
-					<!--</li>-->
-				<!--</ul>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</section>-->
 
 	<!-- Contact Section -->
 	<section id="contact">

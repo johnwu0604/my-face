@@ -22,6 +22,10 @@ app.use(function (req, res, next) {
     next()
 })
 
+// env
+var env = require('dotenv')
+env.config()
+
 // routes ======================================================================
 require('./routes/public')(app)
 require('./routes/fb')(app)

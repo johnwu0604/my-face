@@ -75,7 +75,7 @@ module.exports = {
                 "birthday": response.birthday,
                 "location": response.location,
                 "link": response.link,
-                "relationship_status": response.relationship_status,
+                "relationship_status": response.relationship_status
             }
             return callback(obj)
         })
@@ -93,7 +93,6 @@ module.exports = {
                     "lat": response.tagged_places.data[i].place.location.latitude,
                     "long": response.tagged_places.data[i].place.location.longitude
                 }
-
                 places.push(obj)
             }
             return callback(places);
