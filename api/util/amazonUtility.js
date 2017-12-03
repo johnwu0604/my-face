@@ -29,16 +29,16 @@ module.exports = {
             }
         }
         var uploader = client.uploadDir(params)
-        uploader.on('error', function (err) {
-            console.error('Error uploading director:', err.stack)
-            throw err.stack
-        })
-        uploader.on('end', function () {
-            setTimeout(function() {
-                console.log('Finished uploading directory')
-                return callback()
-            }, 3000)
-        })
+        uploader.on('error', function(err) {
+            console.error("unable to sync:", err.stack);
+        });
+        uploader.on('progress', function() {
+            console.log("progress", uploader.progressAmount, uploader.progressTotal);
+        });
+        uploader.on('end', function() {
+            console.log("done uploading");
+        });
+        return callback()
     }
 
 }
