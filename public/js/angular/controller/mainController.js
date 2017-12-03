@@ -23,7 +23,6 @@ angular.module('mainController', ['facebook'])
         }
 
         $scope.exportCtrl = function(){
-            console.log($($scope.result.documentElement).prop(outerHTML))
             var data = {'html': $scope.result.documentElement.outerHTML}
             FacebookService.postWebsiteData(data);
         }
