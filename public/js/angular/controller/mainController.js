@@ -74,18 +74,6 @@ myMap = function myMap(data){
 
 }
 
-
-removeAuth = function (Facebook, callback) {
-    Facebook.api({
-        method: 'Auth.revokeAuthorization'
-    }, function(response) {
-        Facebook.getLoginStatus(function(response) {
-            return callback()
-        })
-    })
-}
-
-
 login = function (Facebook, callback) {
     console.log("hello")
     var permissions = ['user_photos', 'email', 'user_about_me', 'user_birthday', 'user_education_history', 'user_friends',
