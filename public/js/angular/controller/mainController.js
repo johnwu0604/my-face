@@ -27,23 +27,23 @@ angular.module('mainController', ['facebook'])
             FacebookService.postWebsiteData(data);
         }
 
-        // removeAuth(Facebook, function() {
-        //     login(Facebook, function(token) {
-        //         getUserData(FacebookService, token, function(data, doc) {
-        //             $scope.facebook_user_data = data
-        //             $scope.result = doc
-        //         })
-        //     })
-        // })
-
-
-        token = 'EAACEdEose0cBAGm5YhYzkjBmacVm0OBZBLz00rI1ka56IVHg3QinBwTxBT7R3ihJVU34ISE1mUdDiZBSm9rsDqMAdL3IE7nbvNAUcn25M3hxBPBFXhLBTfS9iLLyAGbyusAxPYg5fq32KKyZAuSmWef9iP2kFNLvfZAKK2IGZBj81yjYMhmweIRjX0mt3Nb2DgXTR97t8kgZDZD'
-        getUserData(FacebookService, token, function(data, doc) {
-            $scope.facebook_user_data = data
-            $scope.result = doc
-            var places = $scope.facebook_user_data.user_info.places
-            myMap(places)
+        removeAuth(Facebook, function() {
+            login(Facebook, function(token) {
+                getUserData(FacebookService, token, function(data, doc) {
+                    $scope.facebook_user_data = data
+                    $scope.result = doc
+                })
+            })
         })
+
+
+        // token = 'EAACEdEose0cBAGm5YhYzkjBmacVm0OBZBLz00rI1ka56IVHg3QinBwTxBT7R3ihJVU34ISE1mUdDiZBSm9rsDqMAdL3IE7nbvNAUcn25M3hxBPBFXhLBTfS9iLLyAGbyusAxPYg5fq32KKyZAuSmWef9iP2kFNLvfZAKK2IGZBj81yjYMhmweIRjX0mt3Nb2DgXTR97t8kgZDZD'
+        // getUserData(FacebookService, token, function(data, doc) {
+        //     $scope.facebook_user_data = data
+        //     $scope.result = doc
+        //     var places = $scope.facebook_user_data.user_info.places
+        //     myMap(places)
+        // })
 
     }])
 
