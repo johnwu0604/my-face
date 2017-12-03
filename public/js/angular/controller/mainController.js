@@ -34,6 +34,8 @@ angular.module('mainController', ['facebook'])
                 getUserData(FacebookService, token, function(data, doc) {
                     $scope.facebook_user_data = data
                     $scope.result = doc
+                    var places = $scope.facebook_user_data.user_info.places
+                    myMap(places)
                 })
             })
         })
