@@ -73,13 +73,31 @@ module.exports = {
                 "last_name": response.last_name,
                 "email": response.email,
                 "birthday": response.birthday,
-                "hometown": response.hometown,
+                "hometown": response.hometown.name,
                 "link": response.link,
                 "relationship_status": response.relationship_status,
             }
             return callback(obj)
         })
     },
+
+
+    getFacebookPlaces: function(token, id, callback){
+        FB.setAccessToken(token)
+        FB.api('/me?fields=tagged_places.limit(10)', function (response) {
+            var places = []
+            for( var i = 0 ; i < 10; i++) {
+                var obj = {
+                    "lat": response.tagged_places.data[i].place.location.latitude,
+                    "long": response.tagged_places.data[i].place.location.longitude
+                }
+
+                places.push(obj)
+            }
+            return callback(places);
+        })
+    },
+
 
     getFacebookEducation: function(token, id, callback){
         FB.setAccessToken(token)
