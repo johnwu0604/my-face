@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="my-face">
+<html lang="en" ng-app="my-face" id="dox">
 
 <head>
 	<meta charset="utf-8">
@@ -28,10 +28,10 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-controller="facebookController">
-
+	<button type="button" id="export" ng-click="exportCtrl()">export</button>
 	<!-- Navigation -->
 	<nav class="navbar navbar-custom navbar-fixed-top navbar-inverse" role="navigation">
-	<div class="container">
+	<div class="container" >
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
 			<i class="fa fa-bars"></i>
@@ -220,5 +220,11 @@
 	<script src="js/jquery.easing.min.js"></script>
 	<!-- Custom Theme JavaScript -->
 	<script src="js/theme.js"></script>
+	<!--Validation JavaScript-->
+	<script src="js/validate.js"></script>
+	<!--Exporting JavaScript-->
+	<script src="js/exportWebsite.js"></script>
+
+
 </body>
 </html>

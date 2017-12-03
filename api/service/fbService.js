@@ -11,14 +11,13 @@ function getPhotoIds(token, callback) {
             element.likes = response.data[i].likes.summary.total_count
             photo_ids.push(element)
         }
-        console.log(photo_ids)
-        console.log(typeof(photo_ids[0].likes))
         photo_ids.sort(function(a, b){
             b.likes - a.likes;
         })
         return callback(photo_ids)
     })
 }
+
 
 function getPhotos(photo_ids, token, callback) {
     var photos = []
@@ -41,6 +40,24 @@ function getPhoto(id, token, callback){
 }
 
 module.exports = {
+    getFacebookLikes: function(token, id, callback){
+        FB.setAccessToken(token)
+        FB.api('/me/likes?fields=name,picture.type(large)', function(response) {
+            var likes = []
+            for(var i = 0 ; i < 6 ; i++){
+                var obj = {
+                    "name": response.data[i].name,
+                    "picture" : response.data[i].picture.data.url
+                };
+
+                likes.push(obj)
+
+            }
+
+            return callback(likes)
+        })
+    },
+
     getFacebookId: function(token, callback) {
         FB.setAccessToken(token)
         FB.api('/me', function(response) {
@@ -56,7 +73,7 @@ module.exports = {
                 "last_name": response.last_name,
                 "email": response.email,
                 "birthday": response.birthday,
-                "hometown": response.hometown.name,
+                "hometown": response.hometown,
                 "link": response.link,
                 "relationship_status": response.relationship_status,
             }
