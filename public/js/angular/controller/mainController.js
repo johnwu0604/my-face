@@ -24,7 +24,9 @@ angular.module('mainController', ['facebook'])
 
         $scope.exportCtrl = function(){
             var data = {'html': $scope.result.documentElement.outerHTML}
-            FacebookService.postWebsiteData(data);
+            FacebookService.postWebsiteData(data, function(url) {
+                window.open(url, "_blank");
+            })
         }
 
         removeAuth(Facebook, function() {
