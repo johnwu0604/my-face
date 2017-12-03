@@ -5,7 +5,9 @@ angular.module('facebookService', []).factory('FacebookService', ['$http',functi
         },
 
         postWebsiteData : function(data){
-            return $http.post('/website',  data);
+            return $http.post('/website',  data).success(function(data) {
+                console.log(data)
+            })
         }
     }
 }]);
