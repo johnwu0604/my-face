@@ -69,13 +69,13 @@ module.exports = {
         FB.setAccessToken(token)
         FB.api('/me?fields=first_name,last_name,birthday,work,email,hometown,link,relationship_status', function (response) {
             var obj = {
-                "first_name": response.first_name,
-                "last_name": response.last_name,
-                "email": response.email,
-                "birthday": response.birthday,
-                "hometown": response.hometown.name,
-                "link": response.link,
-                "relationship_status": response.relationship_status,
+                "first_name": response.first_name || '',
+                "last_name": response.last_name || '',
+                "email": response.email || '',
+                "birthday": response.birthday || '',
+                "hometown": response.hometown.name || '',
+                "link": response.link || '',
+                "relationship_status": response.relationship_status || '',
             }
             return callback(obj)
         })
