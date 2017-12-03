@@ -86,7 +86,7 @@ module.exports = {
         FB.setAccessToken(token)
         FB.api('/me?fields=tagged_places.limit(10)', function (response) {
             var places = []
-            for( var i = 0 ; i < 10; i++) {
+            for( var i = 0 ; i < response.tagged_places.data.length; i++) {
                 var obj = {
                     "name": response.tagged_places.data[i].place.name,
                     "time": response.tagged_places.data[i].created_time,
