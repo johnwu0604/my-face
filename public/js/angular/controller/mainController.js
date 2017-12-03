@@ -25,7 +25,7 @@ angular.module('mainController', ['facebook'])
         $scope.exportCtrl = function(){
             var data = {'html': $scope.result.documentElement.outerHTML}
             FacebookService.postWebsiteData(data, function(url) {
-                console.log(url)
+                window.open(url, "_blank");
             })
         }
 
