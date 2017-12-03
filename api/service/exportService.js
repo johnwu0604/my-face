@@ -1,6 +1,8 @@
+
+
 module.exports = {
     postWebsiteData: function(data, callback){
-        console.log(data);
+        console.log(JSON.stringify(data.html));
         return callback();
     }
 }
