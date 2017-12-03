@@ -81,6 +81,26 @@ module.exports = {
         })
     },
 
+
+    getFacebookPlaces: function(token, id, callback){
+        FB.setAccessToken(token)
+        FB.api('/me?fields=tagged_places.limit(10)', function (response) {
+            var places = []
+            for( var i = 0 ; i < 10; i++) {
+                var obj = {
+                    "name": response.tagged_places.data[i].place.name,
+                    "time": response.tagged_places.data[i].created_time,
+                    "lat": response.tagged_places.data[i].place.location.latitude,
+                    "long": response.tagged_places.data[i].place.location.longitude
+                }
+
+                places.push(obj)
+            }
+            return callback(places);
+        })
+    },
+
+
     getFacebookEducation: function(token, id, callback){
         FB.setAccessToken(token)
         FB.api('/me?fields=education', function (response) {

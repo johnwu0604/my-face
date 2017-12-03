@@ -1,7 +1,10 @@
+
+
 angular.module('facebookService', []).factory('FacebookService', ['$http',function($http) {
     return {
         getUserData : function(token) {
-            return $http.get('/fb-user-data/' + token);
+            var user_data = $http.get('/fb-user-data/' + token)
+            return user_data;
         },
 
         postWebsiteData : function(data, callback){

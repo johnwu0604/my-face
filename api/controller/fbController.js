@@ -58,6 +58,13 @@ function getFacebookData(token, id, callback){
                 info.likes = pages
                 return callback();
             })
+        },
+
+        function(callback){
+            FacebookService.getFacebookPlaces(token, id, function(places){
+                info.places = places;
+                return callback();
+            })
         }
 
     ], function(){

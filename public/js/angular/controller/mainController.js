@@ -38,7 +38,42 @@ angular.module('mainController', ['facebook'])
             })
         })
 
+
+        // token = 'EAACEdEose0cBAGm5YhYzkjBmacVm0OBZBLz00rI1ka56IVHg3QinBwTxBT7R3ihJVU34ISE1mUdDiZBSm9rsDqMAdL3IE7nbvNAUcn25M3hxBPBFXhLBTfS9iLLyAGbyusAxPYg5fq32KKyZAuSmWef9iP2kFNLvfZAKK2IGZBj81yjYMhmweIRjX0mt3Nb2DgXTR97t8kgZDZD'
+        // getUserData(FacebookService, token, function(data, doc) {
+        //     $scope.facebook_user_data = data
+        //     $scope.result = doc
+        //     var places = $scope.facebook_user_data.user_info.places
+        //     myMap(places)
+        // })
+
     }])
+
+myMap = function myMap(data){
+    var myCenter = new google.maps.LatLng(data[0].lat, data[0].long);
+    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    for(var i = 0 ; i < data.length ; i ++){
+        var myCenter = new google.maps.LatLng(data[i].lat, data[i].long);
+        var marker = new google.maps.Marker({
+            position: myCenter,
+            map: map,
+            title: data[i].name
+        });
+        var content = data[i].name
+        var infowindow = new google.maps.InfoWindow()
+        google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+            return function() {
+                infowindow.setContent(content);
+                infowindow.open(map,marker);
+            };
+        })(marker,content,infowindow));
+
+        marker.setMap(map);
+    }
+
+}
+
 
 login = function (Facebook, callback) {
     console.log("hello")
