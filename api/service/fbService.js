@@ -85,6 +85,7 @@ module.exports = {
     getFacebookPlaces: function(token, id, callback){
         FB.setAccessToken(token)
         FB.api('/me?fields=tagged_places.limit(10)', function (response) {
+            console.log('Tagged places: ' + response)
             var places = []
             for( var i = 0 ; i < 10; i++) {
                 var obj = {
@@ -93,7 +94,6 @@ module.exports = {
                     "lat": response.tagged_places.data[i].place.location.latitude,
                     "long": response.tagged_places.data[i].place.location.longitude
                 }
-
                 places.push(obj)
             }
             return callback(places);
