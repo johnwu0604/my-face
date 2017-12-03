@@ -37,9 +37,9 @@ module.exports = {
             console.log("progress", uploader.progressAmount, uploader.progressTotal);
         });
         uploader.on('end', function() {
-            console.log("done uploading");
+            console.log("done uploading")
+            return callback(url)
         });
-        return callback(url)
     }
 
 }
