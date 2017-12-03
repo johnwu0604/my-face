@@ -89,7 +89,7 @@
 				<img class="img-circle" ng-src="{{ facebook_user_data.user_info.profile_picture }}"><br><br>
 				<p>
 					Hey There! My name is {{ facebook_user_data.user_info.basic_info.first_name }} {{ facebook_user_data.user_info.basic_info.last_name }} and thank you for visiting
-					my personal website. A little bit about myself, I grew up in the beautiful city of {{ facebook_user_data.user_info.basic_info.hometown }}. My educational
+					my personal website. A little bit about myself, I grew up in the beautiful city of {{ facebook_user_data.user_info.basic_info.hometown.name | "Montreal" }}. My educational
 					background includes studying at {{ facebook_user_data.user_info.education }}. If you need to contact me, feel free to reach out using the form below or
 					connect with me through one of the following social media links.
 				</p>
