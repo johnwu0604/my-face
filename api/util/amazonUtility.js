@@ -28,6 +28,7 @@ module.exports = {
                 ACL: 'public-read'
             }
         }
+        var url = 'https://s3.amazonaws.com/my-face-dev/website/' + uuid +'/index.html'
         var uploader = client.uploadDir(params)
         uploader.on('error', function(err) {
             console.error("unable to sync:", err.stack);
@@ -38,7 +39,7 @@ module.exports = {
         uploader.on('end', function() {
             console.log("done uploading");
         });
-        return callback()
+        return callback(url)
     }
 
 }
