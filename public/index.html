@@ -122,6 +122,8 @@
 	</div>
 	</section>
 
+	<div id="googleMap"></div>
+
 	<!-- Timeline -->
 	<section id="timeline">
 		<div class="container content-section text-center">
@@ -225,6 +227,19 @@
 	<!--Exporting JavaScript-->
 	<script src="js/exportWebsite.js"></script>
 
+	<script>
+		function myMap() {
+			var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+			var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+			var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+			var marker = new google.maps.Marker({position:myCenter});
+			marker.setMap(map);
+		}
+	</script>
+
+	<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASZ7feZgsR1J-nPR2WNePQmHAjc9Zsve8&callback=myMap">
+	</script>
 
 </body>
 </html>

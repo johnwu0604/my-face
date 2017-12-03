@@ -4,7 +4,7 @@ body {
 	height:100%;
 	font-family:Open Sans,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	color:#fff;
-	background-color:#000;
+	background-color: #f9f9f9;
 	 font-weight:300;
 }
 html {
@@ -695,3 +695,11 @@ section {
 	height: 50%;
 }
 
+#googleMap{
+	background-color: #f9f9f9;
+	height:350px;
+	width:90%;
+	margin-right: 5%;
+	margin-left: 5%;
+	overflow: hidden;
+}
