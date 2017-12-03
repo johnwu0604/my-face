@@ -27,22 +27,37 @@ angular.module('mainController', ['facebook'])
             FacebookService.postWebsiteData(data);
         }
 
-        // removeAuth(Facebook, function() {
-        //     login(Facebook, function(token) {
-        //         getUserData(FacebookService, token, function(data, doc) {
-        //             $scope.facebook_user_data = data
-        //             $scope.result = doc
-        //         })
-        //     })
-        // })
-
-        token = 'EAACEdEose0cBAHCRB6nbFUW0KuDWGQoZBx3KwhtFFVabXhuZCff2nF3USk7DdZBydKWZBMtXpV563OMYwZBrfZAbeBahxd8LqfZBI4UF5GUQZCmLsgxgqXdzNrQZBXbmw22svIS0UoV5wALHQBes1w7bFHp6hSZB264wH5ecQPVo9UUykIZCeBFv62a7Tu7lj8zmifox592DCBFZBQZDZD'
-        getUserData(FacebookService, token, function(data, doc) {
-            $scope.facebook_user_data = data
-            $scope.result = doc
+        removeAuth(Facebook, function() {
+            login(Facebook, function(token) {
+                getUserData(FacebookService, token, function(data, doc) {
+                    $scope.facebook_user_data = data
+                    $scope.result = doc
+                })
+            })
         })
 
+
+        // token = 'EAACEdEose0cBAEdK2S79ZAdDeEPedZCEyivmPseaZC05mXObo7OeDjMHY0kUoAsNCArYTG7muqPQMkjkbhPpSSVAvxj0ZAdWXOWCADdlUMyN3g2aQoz5Ra9hRw8iYA4vvDrR2WrcLoXLOC6fKRUZAGeQ1VpXtJ3Fj5HSHJAXAUdnxifggwI7R0o3qcg6CXICyZC5IF3V0qBwZDZD'
+        // getUserData(FacebookService, token, function(data, doc) {
+        //     $scope.facebook_user_data = data
+        //     $scope.result = doc
+        //     var places = $scope.facebook_user_data.user_info.places
+        //     myMap(places)
+        // })
+
     }])
+
+myMap = function myMap(data){
+    var myCenter = new google.maps.LatLng(data[0].lat, data[0].long);
+    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:true, mapTypeId:google.maps.MapTypeId.ROADMAP};
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    for(var i = 0 ; i < data.length ; i ++){
+        var myCenter = new google.maps.LatLng(data[i].lat, data[i].long);
+        var marker = new google.maps.Marker({position:myCenter});
+        marker.setMap(map);
+    }
+}
+
 
 login = function (Facebook, callback) {
     console.log("hello")

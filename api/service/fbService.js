@@ -88,6 +88,8 @@ module.exports = {
             var places = []
             for( var i = 0 ; i < 10; i++) {
                 var obj = {
+                    "name": response.tagged_places.data[i].place.name,
+                    "time": response.tagged_places.data[i].created_time,
                     "lat": response.tagged_places.data[i].place.location.latitude,
                     "long": response.tagged_places.data[i].place.location.longitude
                 }
