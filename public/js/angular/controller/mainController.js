@@ -1,30 +1,65 @@
-angular.module('mainController', [])
+angular.module('mainController', ['facebook'])
 
-    .controller('facebookController', ['$scope','$http','Facebook', 'Email', function($scope, $http, Facebook, Email) {
+    .config(function(FacebookProvider) {
+        // Set your appId through the setAppId method or
+        // use the shortcut in the initialize method directly.
+        FacebookProvider.init('1546707545396988')
+    })
+
+    .controller('facebookController', ['$scope','$http','FacebookService', 'Email', 'Facebook', function($scope, $http, FacebookService, Email, Facebook) {
 
         $scope.facebook_user_data = {};
         $scope.loading = true;
         $scope.emailFormData = {};
-        $scope.email_success_message = '';
-
-        var token = 'EAACEdEose0cBAAmvea3nyvOkqruy9JKOfZAy0RcX6mG5xNdsaugKZBjYkVlcfYe8ZAYa7QG51N9XJljEZBTQUB9FpkmLoHrnh3h7XtVh6DP5ViaQnAo9OgZCE27ZAj5BfuBgNi8NuaADnbZAULFq2ezTXN7BFnZBT3fUyG68xOLQnkogS9K1MKpfqvmqojQ0PZCoApAwTSv3ufgZDZD';
-
-        Facebook.getUserData(token).success(function(data) {
-            console.log(data);
-            $scope.facebook_user_data = data;
-            $scope.loading = false;
-        })
-
-
+        $scope.email_success_message = ''
 
         $scope.sendEmail = function() {
             $scope.emailFormData.user_email = $scope.facebook_user_data.user_info.basic_info.email;
             Email.create($scope.emailFormData).success(function(result) {
-                $scope.emailFormData = {};
-                $scope.email_success_message = 'Your email was successfully sent!';
+                $scope.emailFormData = {}
+                $scope.email_success_message = 'Your email was successfully sent!'
             })
-        };
+        }
 
+        removeAuth(Facebook, function() {
+            login(Facebook, function(token) {
+                getUserData(FacebookService, token, function(data) {
+                    $scope.facebook_user_data = data
+                })
+            })
+        })
 
+    }])
 
-    }]);
+login = function (Facebook, callback) {
+    console.log("hello")
+    var permissions = ['user_photos', 'email', 'user_about_me', 'user_birthday', 'user_education_history', 'user_friends',
+        'user_hometown', 'user_likes', 'user_location', 'user_posts', 'user_relationships', 'user_relationship_details',
+        'user_work_history']
+    Facebook.login(function(response) {
+        if (response.status == 'connected') {
+            console.log('Result: ' + JSON.stringify(response))
+            return callback(response.authResponse.accessToken)
+        } else {
+            console.log('Failed to connect')
+        }
+    }, { scope: permissions.join(', '), return_scopes: true })
+};
+
+getUserData = function(FacebookService, token, callback) {
+    FacebookService.getUserData(token).success(function(data) {
+        console.log(data)
+        return callback(data)
+    })
+}
+
+removeAuth = function (Facebook, callback) {
+    Facebook.api({
+        method: 'Auth.revokeAuthorization'
+    }, function(response) {
+        Facebook.getLoginStatus(function(response) {
+            return callback()
+        })
+    })
+}
+

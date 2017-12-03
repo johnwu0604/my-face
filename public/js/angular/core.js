@@ -1,1 +1,1 @@
-angular.module('my-face', ['mainController', 'facebookService', 'emailService']);
+angular.module('my-face', ['mainController', 'facebookService', 'emailService', 'facebook']);
