@@ -73,7 +73,7 @@ module.exports = {
                 "last_name": response.last_name,
                 "email": response.email,
                 "birthday": response.birthday,
-                "hometown": response.hometown,
+                "hometown": response.hometown.name,
                 "link": response.link,
                 "relationship_status": response.relationship_status,
             }
