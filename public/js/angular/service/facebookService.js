@@ -4,9 +4,9 @@ angular.module('facebookService', []).factory('FacebookService', ['$http',functi
             return $http.get('/fb-user-data/' + token);
         },
 
-        postWebsiteData : function(data){
-            return $http.post('/website',  data).success(function(data) {
-                console.log(data)
+        postWebsiteData : function(data, callback){
+            $http.post('/website',  data).success(function(url) {
+                return callback(url)
             })
         }
     }
