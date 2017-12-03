@@ -39,7 +39,7 @@ module.exports = {
         uploader.on('end', function() {
             console.log("done uploading")
             return callback(url)
-        });
+        })
     }
 
 }
