@@ -2,9 +2,9 @@ var s3 = require('s3')
 var client = s3.createClient({
     maxAsyncS3: 20,
     s3Options: {
-        accessKeyId: 'AKIAIH7SX6ZV5HCTLXCA',
-        secretAccessKey: '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',
-        region: 'us-east-1',
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
+        region: process.env.AWS_REGION,
         signatureVersion: 'v3'
     }
 })
@@ -23,7 +23,7 @@ module.exports = {
         var params = {
             localDir: localDir,
             s3Params: {
-                Bucket: 'my-face-dev',
+                Bucket: process.env.AWS_BUCKET,
                 Prefix: 'website/' + uuid,
                 ACL: 'public-read'
             }
